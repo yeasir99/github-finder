@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useGithubState} from '../../context/GithubState'
 import {searchUser, clearUsers} from '../../context/githubActions'
 
 const Search = () => {
-  const [text, setText] = useState('')
+  const [queryText, setQueryText] = useState('')
 
   const [{allUser}, dispatch] = useGithubState()
 
@@ -11,8 +11,8 @@ const Search = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    searchUser(text, dispatch)
-    setText('')
+    searchUser(dispatch)(queryText)
+    setQueryText('')
   }
 
   return (
@@ -20,10 +20,9 @@ const Search = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="text"
-          value={text}
+          value={queryText}
           placeholder="Search User..."
-          onChange={e => setText(e.target.value)}
+          onChange={e => setQueryText(e.target.value)}
         />
         <input
           type="submit"
@@ -34,7 +33,7 @@ const Search = () => {
       {allUser.length > 0 && (
         <button
           className="btn btn-light btn-block"
-          onClick={clearUsers(dispatch)}
+          onClick={() => clearUsers(dispatch)}
         >
           Clear
         </button>

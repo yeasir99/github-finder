@@ -1,6 +1,6 @@
 import * as ACTION from './Types'
 
-export default (state, action) => {
+const githubReducer = (state, action) => {
   switch (action.type) {
     case ACTION.SEARCH_USERS:
       return {
@@ -36,3 +36,5 @@ export default (state, action) => {
       return state
   }
 }
+
+export default githubReducer

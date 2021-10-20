@@ -1,11 +1,12 @@
-import React, {useReducer, createContext, useContext} from 'react'
-
+import {useReducer, createContext, useContext} from 'react'
 import githubReducer from './githubReducer'
 
-const githubContext = createContext()
+const GithubContext = createContext()
+
+GithubContext.displayName = 'GithubContext'
 
 export const useGithubState = () => {
-  const context = useContext(githubContext)
+  const context = useContext(GithubContext)
   if (!context) {
     throw new Error(
       'Component must be wrapped with in GithubStateContextProvider',
@@ -22,5 +23,5 @@ export const GithubState = props => {
     loading: false,
   })
 
-  return <githubContext.Provider value={[state, dispatch]} {...props} />
+  return <GithubContext.Provider value={[state, dispatch]} {...props} />
 }

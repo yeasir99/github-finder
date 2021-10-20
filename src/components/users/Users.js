@@ -1,10 +1,9 @@
-import React, {useContext} from 'react'
-import githubContext from '../../context/githubContext'
 import Spinner from '../layout/Spinner'
 import UserItem from './UserItem'
+import {useGithubState} from '../../context/GithubState'
 
 const Users = () => {
-  const {loading, allUser} = useContext(githubContext)
+  const [{loading, allUser}] = useGithubState()
 
   if (loading) return <Spinner />
   return (

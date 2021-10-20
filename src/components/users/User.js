@@ -1,17 +1,17 @@
-import React, {Fragment, useContext, useEffect} from 'react'
+import {Fragment, useEffect} from 'react'
+import {useGithubState} from '../../context/GithubState'
 import {Link} from 'react-router-dom'
-import githubContext from '../../context/githubContext'
 import Spinner from '../layout/Spinner'
 import {FaCheck, FaTimesCircle} from 'react-icons/fa'
 import Repos from './Repos'
+import {getUser, getUserRepos} from '../../context/githubActions'
 
 const User = ({match}) => {
-  const {getUserRepos, getUser, loading, repos, singleUser} =
-    useContext(githubContext)
+  const [{loading, repos, singleUser}, dispatch] = useGithubState()
 
   useEffect(() => {
-    getUser(match.params.login)
-    getUserRepos(match.params.login)
+    getUser(dispatch)(match.params.login)
+    getUserRepos(dispatch)(match.params.login)
 
     // eslint-disable-next-line
   }, [])

@@ -2,8 +2,8 @@
 import axios from 'axios'
 import * as ACTION from './Types'
 
-export const searchUser = async (text, dispatch) => {
-  setLoading()
+export const searchUser = dispatch => async text => {
+  setLoading(dispatch)
 
   const res = await axios.get(
     `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_GITHUB_SECRET}`,
@@ -15,8 +15,8 @@ export const searchUser = async (text, dispatch) => {
 }
 
 // Get User
-export const getUser = async (username, dispatch) => {
-  setLoading()
+export const getUser = dispatch => async username => {
+  setLoading(dispatch)
 
   const res = await axios.get(
     `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_GITHUB_SECRET}`,
@@ -29,8 +29,8 @@ export const getUser = async (username, dispatch) => {
 }
 
 // Get Repos
-export const getUserRepos = async (username, dispatch) => {
-  setLoading()
+export const getUserRepos = dispatch => async username => {
+  setLoading(dispatch)
 
   const res = await axios.get(
     `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_ID}&client_secret=${process.env.REACT_APP_GITHUB_SECRET}`,
