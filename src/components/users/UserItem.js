@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import {Link} from 'react-router-dom'
 
-const UserItem = ({ user: { login, avatar_url } }) => {
+const UserItem = ({user: {login, avatar_url}}) => {
   return (
     <div className="card text-center">
       <img
         src={avatar_url}
         alt=""
         className="round-img"
-        style={{ width: "60px" }}
+        style={{width: '60px'}}
       />
       <h3>{login}</h3>
       <div>
@@ -17,7 +17,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UserItem;
+export default UserItem

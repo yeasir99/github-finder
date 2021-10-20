@@ -1,6 +1,6 @@
-import React from "react";
-import Search from "../layout/Search";
-import Users from "../users/Users";
+import React from 'react'
+import Search from '../layout/Search'
+import Users from '../users/Users'
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <Search />
       <Users />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

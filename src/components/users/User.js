@@ -1,21 +1,20 @@
-import React, { Fragment, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import githubContext from "../../context/githubContext";
-import Spinner from "../layout/Spinner";
-import { FaCheck, FaTimesCircle } from "react-icons/fa";
-import Repos from "./Repos";
+import React, {Fragment, useContext, useEffect} from 'react'
+import {Link} from 'react-router-dom'
+import githubContext from '../../context/githubContext'
+import Spinner from '../layout/Spinner'
+import {FaCheck, FaTimesCircle} from 'react-icons/fa'
+import Repos from './Repos'
 
-const User = ({ match }) => {
-  const { getUserRepos, getUser, loading, repos, singleUser } = useContext(
-    githubContext
-  );
+const User = ({match}) => {
+  const {getUserRepos, getUser, loading, repos, singleUser} =
+    useContext(githubContext)
 
   useEffect(() => {
-    getUser(match.params.login);
-    getUserRepos(match.params.login);
+    getUser(match.params.login)
+    getUserRepos(match.params.login)
 
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   const {
     name,
@@ -31,15 +30,15 @@ const User = ({ match }) => {
     public_repos,
     public_gists,
     hireable,
-  } = singleUser;
+  } = singleUser
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner />
   return (
     <Fragment>
       <Link to="/" className="btn btn-light">
         Back To Search
       </Link>
-      Hireable:{" "}
+      Hireable:{' '}
       {hireable ? (
         <FaCheck className="text-success" />
       ) : (
@@ -51,7 +50,7 @@ const User = ({ match }) => {
             src={avatar_url}
             alt=""
             className="round-img"
-            style={{ width: "150px" }}
+            style={{width: '150px'}}
           />
           <h1>{name}</h1>
           <p>Location: {location}</p>
@@ -102,7 +101,7 @@ const User = ({ match }) => {
       </div>
       <Repos repos={repos} />
     </Fragment>
-  );
-};
+  )
+}
 
-export default User;
+export default User

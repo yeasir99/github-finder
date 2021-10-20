@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import githubContext from "../../context/githubContext";
+import React, {useState, useContext} from 'react'
+import githubContext from '../../context/githubContext'
 
 const Search = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('')
 
-  const { searchUser, clearUsers, allUser } = useContext(githubContext);
+  const {searchUser, clearUsers, allUser} = useContext(githubContext)
 
   //submit form
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    searchUser(text);
-    setText("");
-  };
+  const handleSubmit = e => {
+    e.preventDefault()
+    searchUser(text)
+    setText('')
+  }
 
   return (
     <div>
@@ -22,7 +22,7 @@ const Search = () => {
           name="text"
           value={text}
           placeholder="Search User..."
-          onChange={(e) => setText(e.target.value)}
+          onChange={e => setText(e.target.value)}
         />
         <input
           type="submit"
@@ -36,7 +36,7 @@ const Search = () => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
