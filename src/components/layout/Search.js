@@ -1,16 +1,17 @@
-import React, {useState, useContext} from 'react'
-import githubContext from '../../context/githubContext'
+import React, {useState} from 'react'
+import {useGithubState} from '../../context/GithubState'
+import {searchUser, clearUsers} from '../../context/githubActions'
 
 const Search = () => {
   const [text, setText] = useState('')
 
-  const {searchUser, clearUsers, allUser} = useContext(githubContext)
+  const [{allUser}, dispatch] = useGithubState()
 
   //submit form
 
   const handleSubmit = e => {
     e.preventDefault()
-    searchUser(text)
+    searchUser(text, dispatch)
     setText('')
   }
 
@@ -31,7 +32,10 @@ const Search = () => {
         />
       </form>
       {allUser.length > 0 && (
-        <button className="btn btn-light btn-block" onClick={clearUsers}>
+        <button
+          className="btn btn-light btn-block"
+          onClick={clearUsers(dispatch)}
+        >
           Clear
         </button>
       )}
